@@ -39,7 +39,6 @@ class ViewController: UIViewController {
             print("Got it wrong")
         }
         
-        startOver()
         nextQuestion()
     }
     
@@ -50,6 +49,20 @@ class ViewController: UIViewController {
     
 
     func nextQuestion() {
+        if counter >= 12 {
+            let myAlert = UIAlertController(title: "Awesome", message: "Do you want to start over?", preferredStyle: .alert)
+            
+            let restartAction = UIAlertAction(title: "Restart", style: .default, handler: { (UIAlertAction) in
+                self.startOver()
+            })
+            
+            myAlert.addAction(restartAction)
+            present(myAlert, animated: true, completion: nil)
+        }
+        else {
+            counter = counter + 1
+        }
+        
         currentQuestion = allQuestions.list[counter]
         questionLabel.text = currentQuestion.questionText
     }
@@ -66,12 +79,9 @@ class ViewController: UIViewController {
     
     
     func startOver() {
-        if counter >= 12 {
-            counter = 0
-        }
-        else {
-            counter = counter + 1
-        }
+        counter = 0
+        currentQuestion = allQuestions.list[counter]
+        questionLabel.text = currentQuestion.questionText
     }
     
 
