@@ -33,11 +33,11 @@ class ViewController: UIViewController {
         checkAnswer(buttonPressed: sender.tag)
         
         if pickedAnswer == currentQuestion.answer {
-            print("Got it right")
+            ProgressHUD.showSuccess("Correct")
             score = score + 1
         }
         else {
-            print("Got it wrong")
+            ProgressHUD.showError("Wrong")
         }
         
         nextQuestion()
